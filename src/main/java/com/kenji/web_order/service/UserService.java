@@ -17,6 +17,10 @@ public interface UserService {
 
     UserResponse updateUser(Long userId, UserUpdateRequest request) throws AppException;
 
+    void deleteUser(Long userId);
+
+    UserResponse getMyInfo();
+
     List<UserResponse> findAllUsers();
 
     void resetPassword(Long userId, String newPassword) throws AppException;

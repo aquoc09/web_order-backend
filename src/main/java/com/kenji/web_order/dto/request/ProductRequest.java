@@ -16,11 +16,25 @@ import java.util.Map;
 public class ProductRequest {
     String name;
     String productCode;
-    String img;
+    String productImage;
     Map<String, BigDecimal> prices;
+    String description;
 
-    String categoryId;
+    Long categoryId;
 
     boolean inStock;
-    boolean popular;
+    boolean inPopular;
+
+    @Override
+    public String toString() {
+        return "ProductRequest{" +
+                "name='" + name + '\'' +
+                ", productCode='" + productCode + '\'' +
+                ", img='" + productImage + '\'' +
+                ", prices=" + prices +
+                ", categoryId='" + categoryId + '\'' +
+                ", inStock=" + inStock +
+                ", popular=" + inPopular +
+                '}';
+    }
 }

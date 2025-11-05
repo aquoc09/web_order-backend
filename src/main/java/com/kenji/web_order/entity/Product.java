@@ -10,6 +10,7 @@ import java.util.Map;
 
 @Entity
 @Data
+@Table(name = "products")
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -22,14 +23,14 @@ public class Product {
     @Column(name = "product_name", length = 200)
     private String name;
 
-    @Column(name = "product_code", length = 100)
+    @Column(name = "product_code", length = 100, unique = true)
     private String productCode;
 
     @ElementCollection
     @CollectionTable(name = "product_prices", joinColumns = @JoinColumn(name = "product_id"))
     @MapKeyColumn(name = "product_size")
     @Column(name = "product_price")
-    private Map<String, BigDecimal> price; // size → price
+    private Map<String, BigDecimal> prices; // size → price
 
     @Column(name = "product_img", length = 100)
     private String productImage;
@@ -56,4 +57,20 @@ public class Product {
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
     private List<Review> reviews;
 
+    @Override
+    public String toString() {
+        return "Product{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", productCode='" + productCode + '\'' +
+                ", price=" + prices +
+                ", productImage='" + productImage + '\'' +
+                ", description='" + description + '\'' +
+                ", inStock=" + inStock +
+                ", inPopular=" + inPopular +
+                ", category=" + category +
+                ", materials=" + materials +
+                ", reviews=" + reviews +
+                '}';
+    }
 }

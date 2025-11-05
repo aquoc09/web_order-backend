@@ -26,6 +26,13 @@ public class CategoryServiceImp implements CategoryService {
 
         Category category = categoryMapper.toCategory(request);
 
+        if(request.getParentCategory().getCategoryCode() !=null) {
+            Category parentCategory = categoryRepository
+                    .findByCategoryCode(request.getParentCategory().getCategoryCode())
+                    .orElseThrow(() -> new AppException(ErrorCode.CATEGORY_NOT_EXISTED));
+            category.setParentCategory(parentCategory);
+        }
+
         return categoryMapper.toCategoryResponse(categoryRepository.save(category));
     }
 
@@ -34,17 +41,6 @@ public class CategoryServiceImp implements CategoryService {
                 .orElseThrow(() -> new AppException(ErrorCode.CATEGORY_NOT_EXISTED));
         return categoryMapper.toCategoryResponse(category);
     }
-
-//@PostAuthorize("returnObject.categoryname == authentication.name")
-//public CategoryResponse getMyInfo() {
-//    var context = SecurityContextHolder.getContext();
-//    String name = context.getAuthentication().getName();
-//
-//    Category category = categoryRepository.findByCategoryname(name)
-//            .orElseThrow(() -> new AppException(ErrorCode.CATEGORY_NOT_EXISTED));
-//
-//    return categoryMapper.toCategoryResponse(category);
-//}
 
     //@PreAuthorize("hasAnyRole('ADMIN','HR')")
     public List<CategoryResponse> findAllCategories() {
@@ -64,6 +60,13 @@ public class CategoryServiceImp implements CategoryService {
                 .orElseThrow(() -> new AppException(ErrorCode.CATEGORY_NOT_EXISTED));
 
         categoryMapper.updateCategory(category, request);
+
+        if(request.getParentCategory().getCategoryCode() !=null) {
+            Category parentCategory = categoryRepository
+                    .findByCategoryCode(request.getParentCategory().getCategoryCode())
+                    .orElseThrow(() -> new AppException(ErrorCode.CATEGORY_NOT_EXISTED));
+            category.setParentCategory(parentCategory);
+        }
 
         return categoryMapper.toCategoryResponse(categoryRepository.save(category));
     }

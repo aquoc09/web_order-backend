@@ -1,8 +1,16 @@
 package com.kenji.web_order.dto.request;
 
+import com.kenji.web_order.entity.Category;
+import com.kenji.web_order.entity.Product;
+import com.kenji.web_order.enums.CategoryStatus;
+import jakarta.persistence.Column;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -10,6 +18,8 @@ import lombok.experimental.FieldDefaults;
 @Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class CategoryRequest {
-    String categoryCode;
     String name;
+    String categoryCode;
+    CategoryStatus status;
+    Category parentCategory;
 }

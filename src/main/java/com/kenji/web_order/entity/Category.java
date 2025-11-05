@@ -14,27 +14,28 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    Long id;
 
     @Column(name = "category_name", length = 200)
-    private String name;
+    String name;
 
     @Column(name = "category_code")
-    private String categoryCode;
+    String categoryCode;
 
     @Column(name = "category_status")
-    private CategoryStatus status;
+    CategoryStatus status;
 
     @ManyToOne
     @JoinColumn(name = "parent_id")
-    private Category parentCategory;
+    Category parentCategory;
 
     @OneToMany(mappedBy = "parentCategory")
-    private List<Category> subCategories;
+    List<Category> subCategories;
 
     @OneToMany(mappedBy = "category")
-    private List<Product> products;
+    List<Product> products;
 }

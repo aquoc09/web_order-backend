@@ -29,7 +29,7 @@ public class ProductController {
     }
 
     @GetMapping
-    List<ApiResponse<ProductResponse>> getAll() {
+    List<ApiResponse<ProductResponse>> findAll() {
         List<ApiResponse<ProductResponse>> apiResponses = new ArrayList<>();
         productService.findAllProducts().forEach(productResponse -> apiResponses.add(
                 ApiResponse.<ProductResponse>builder()
@@ -44,13 +44,6 @@ public class ProductController {
                 .result(productService.getProduct(productId))
                 .build();
     }
-
-//    @GetMapping("/myInfo")
-//    ApiResponse<ProductResponse> getMyInfo() {
-//        return ApiResponse.<ProductResponse>builder()
-//                .result(productService.getMyInfo())
-//                .build();
-//    }
 
     @DeleteMapping("/{productId}")
     ApiResponse<String> delete(@PathVariable Long productId) {

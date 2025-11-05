@@ -127,6 +127,7 @@ public class AuthenticationServiceImp implements AuthenticationService {
 
         return AuthenticationResponse.builder()
                 .token(token)
+                .refreshToken(entityToken.getRefreshToken())
                 .authenticated(authenticated)
                 .build();
     }
@@ -210,7 +211,11 @@ public class AuthenticationServiceImp implements AuthenticationService {
         tokenRepository.delete(token);
         tokenRepository.save(entityToken);
 
-        return AuthenticationResponse.builder().token(newToken).authenticated(true).build();
+        return AuthenticationResponse.builder()
+                .token(newToken)
+                .refreshToken(entityToken.getRefreshToken())
+                .authenticated(true)
+                .build();
     }
 
     private Token getEntityTokenFromStringToken(String token) throws ParseException, JOSEException {

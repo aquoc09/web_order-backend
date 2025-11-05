@@ -8,6 +8,7 @@ import lombok.experimental.FieldDefaults;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Table(name = "materials")
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Material {
     @Id

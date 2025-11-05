@@ -34,10 +34,10 @@ public class User extends BaseEntity{
     @Column(name = "email", length = 100, unique = true)
     private String email;
 
-    @Column(name = "phone", length = 10, unique = true)
+    @Column(name = "phone", length = 10)
     private String phone;
 
-    @Column(name = "dob", length = 10, unique = true)
+    @Column(name = "dob", length = 10)
     private LocalDate dob;
 
     @Column(name = "gender")
@@ -67,4 +67,25 @@ public class User extends BaseEntity{
     @ManyToOne
     @JoinColumn(name = "role_id")
     private Role role;
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", fullName='" + fullName + '\'' +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                ", phone='" + phone + '\'' +
+                ", dob=" + dob +
+                ", gender=" + gender +
+                ", active=" + active +
+                ", facebookAccountId=" + facebookAccountId +
+                ", googleAccountId=" + googleAccountId +
+                ", addresses=" + addresses +
+                ", reviews=" + reviews +
+                ", cart=" + cart +
+                ", role=" + role +
+                '}';
+    }
 }

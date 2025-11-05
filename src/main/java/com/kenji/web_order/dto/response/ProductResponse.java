@@ -13,13 +13,13 @@ import java.util.Map;
 @Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class ProductResponse {
-    String productId;
+    String id;
     String name;
     String productCode;
-    String img;
+    String productImage;
     Map<String, BigDecimal> prices;
 
-    CategoryResponse category;
+    String categoryCode;
 
     boolean inStock;
     boolean popular;
