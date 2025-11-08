@@ -33,7 +33,9 @@ public enum ErrorCode {
     CATEGORY_NOT_EXISTED(5001, "Category not existed", HttpStatus.NOT_FOUND),
 
     TOKEN_EXPIRED(6001, "Token is expired", HttpStatus.BAD_REQUEST),
-    NO_USER_TOKEN(6002, "No user match to token", HttpStatus.BAD_REQUEST)
+    NO_USER_TOKEN(6002, "No user match to token", HttpStatus.BAD_REQUEST),
+
+    PROMOTION_NOT_EXISTED(7002, "No user match to token", HttpStatus.NOT_FOUND)
     ;
 
     ErrorCode(int code, String message, HttpStatus status) {

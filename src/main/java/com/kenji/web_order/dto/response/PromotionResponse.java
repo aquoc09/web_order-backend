@@ -1,4 +1,4 @@
-package com.kenji.web_order.dto.request;
+package com.kenji.web_order.dto.response;
 
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -8,6 +8,9 @@ import lombok.experimental.FieldDefaults;
 @AllArgsConstructor
 @Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class RefreshTokenRequest {
-    String refreshToken;
+public class PromotionResponse {
+    Long id;
+    String title;
+    String img;
+    boolean inStock;
 }

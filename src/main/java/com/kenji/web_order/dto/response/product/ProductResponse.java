@@ -1,6 +1,5 @@
-package com.kenji.web_order.dto.response;
+package com.kenji.web_order.dto.response.product;
 
-import com.kenji.web_order.dto.request.CategoryRequest;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 

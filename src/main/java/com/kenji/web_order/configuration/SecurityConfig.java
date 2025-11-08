@@ -22,8 +22,14 @@ import org.springframework.web.filter.CorsFilter;
 @EnableMethodSecurity
 public class SecurityConfig {
 
-    private static final String[] PUBLIC_ENDPOINTS = {
-        "/users", "auth/log-in", "/auth/introspect", "/auth/logout", "/auth/refresh"
+    private static final String[] PUBLIC_POST_ENDPOINTS = {
+        "/users",
+            "auth/log-in", "/auth/introspect", "/auth/logout", "/auth/refresh"
+    };
+    private static final String[] PUBLIC_GET_ENDPOINTS = {
+            "/products/latest-products", "/products/popular-products", "/products",
+            "/promotions/in-stock",
+            "/category"
     };
 
 
@@ -40,8 +46,9 @@ public class SecurityConfig {
                 .cors(cors -> {}) // bật CORS
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(
-                    request -> request.requestMatchers(HttpMethod.POST, PUBLIC_ENDPOINTS)
-                    .permitAll()
+                        request
+                        -> request.requestMatchers(HttpMethod.POST, PUBLIC_POST_ENDPOINTS).permitAll()
+                                .requestMatchers(HttpMethod.GET, PUBLIC_GET_ENDPOINTS).permitAll()
                     .anyRequest()
                     .authenticated());
 

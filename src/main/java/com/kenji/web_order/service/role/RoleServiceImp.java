@@ -1,4 +1,4 @@
-package com.kenji.web_order.service.Impl;
+package com.kenji.web_order.service.role;
 
 import com.kenji.web_order.dto.request.RoleRequest;
 import com.kenji.web_order.dto.response.RoleResponse;
@@ -7,7 +7,6 @@ import com.kenji.web_order.exception.AppException;
 import com.kenji.web_order.exception.ErrorCode;
 import com.kenji.web_order.mapper.RoleMapper;
 import com.kenji.web_order.repository.RoleRepository;
-import com.kenji.web_order.service.RoleService;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;

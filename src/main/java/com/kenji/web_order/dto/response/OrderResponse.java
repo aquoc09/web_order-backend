@@ -1,8 +1,10 @@
-package com.kenji.web_order.dto.request;
+package com.kenji.web_order.dto.response;
 
 import com.kenji.web_order.entity.Address;
 import com.kenji.web_order.entity.OrderDetail;
+import com.kenji.web_order.entity.Role;
 import com.kenji.web_order.entity.User;
+import com.kenji.web_order.enums.Gender;
 import com.kenji.web_order.enums.OrderStatus;
 import com.kenji.web_order.enums.PaymentMethod;
 import com.kenji.web_order.enums.ShippingMethod;
@@ -10,17 +12,16 @@ import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
-import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Map;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class OrderRequest {
+public class OrderResponse {
+    Long id;
     String note;
     LocalDate orderDate;
     OrderStatus status;
@@ -30,7 +31,7 @@ public class OrderRequest {
     String trackingNumber;
     PaymentMethod paymentMethod;
     boolean active;
-    Long userId;
-    AddressRequest address;
-    List<OrderDetailRequest> orderDetails;
+    String userId;
+    AddressResponse address;
+    List<OrderDetailResponse> orderDetails;
 }

@@ -1,4 +1,4 @@
-package com.kenji.web_order.dto.request;
+package com.kenji.web_order.dto.request.token;
 
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -8,6 +8,6 @@ import lombok.experimental.FieldDefaults;
 @AllArgsConstructor
 @Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class TokenRequest {
-    String token;
+public class RefreshTokenRequest {
+    String refreshToken;
 }

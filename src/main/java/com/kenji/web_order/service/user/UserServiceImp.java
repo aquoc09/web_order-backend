@@ -1,7 +1,7 @@
-package com.kenji.web_order.service.Impl;
+package com.kenji.web_order.service.user;
 
-import com.kenji.web_order.dto.request.UserCreationRequest;
-import com.kenji.web_order.dto.request.UserUpdateRequest;
+import com.kenji.web_order.dto.request.user.UserCreationRequest;
+import com.kenji.web_order.dto.request.user.UserUpdateRequest;
 import com.kenji.web_order.dto.response.UserResponse;
 import com.kenji.web_order.entity.Role;
 import com.kenji.web_order.entity.Token;
@@ -13,23 +13,18 @@ import com.kenji.web_order.mapper.UserMapper;
 import com.kenji.web_order.repository.RoleRepository;
 import com.kenji.web_order.repository.TokenRepository;
 import com.kenji.web_order.repository.UserRepository;
-import com.kenji.web_order.service.UserService;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.access.prepost.PostAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.util.CollectionUtils;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Service
 @RequiredArgsConstructor

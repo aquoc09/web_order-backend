@@ -1,5 +1,7 @@
 package com.kenji.web_order.dto.request;
 
+import com.kenji.web_order.entity.User;
+import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -12,13 +14,8 @@ import java.util.Map;
 @Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class AddressRequest {
-    String name;
-    String productCode;
-    String img;
-    Map<String, BigDecimal> prices;
-
-    String categoryId;
-
-    boolean inStock;
-    boolean popular;
+     String phoneNumber;
+     String email;
+     String addressInfo;
+     String userId;
 }

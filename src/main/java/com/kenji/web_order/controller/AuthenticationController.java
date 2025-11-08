@@ -2,12 +2,12 @@ package com.kenji.web_order.controller;
 
 
 import com.kenji.web_order.dto.request.AuthenticationRequest;
-import com.kenji.web_order.dto.request.RefreshTokenRequest;
-import com.kenji.web_order.dto.request.TokenRequest;
+import com.kenji.web_order.dto.request.token.RefreshTokenRequest;
+import com.kenji.web_order.dto.request.token.TokenRequest;
 import com.kenji.web_order.dto.response.ApiResponse;
 import com.kenji.web_order.dto.response.AuthenticationResponse;
 import com.kenji.web_order.dto.response.IntrospectResponse;
-import com.kenji.web_order.service.AuthenticationService;
+import com.kenji.web_order.service.authentication.AuthenticationService;
 import com.nimbusds.jose.JOSEException;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;

@@ -1,8 +1,8 @@
-package com.kenji.web_order.service;
+package com.kenji.web_order.service.authentication;
 
 import com.kenji.web_order.dto.request.AuthenticationRequest;
-import com.kenji.web_order.dto.request.RefreshTokenRequest;
-import com.kenji.web_order.dto.request.TokenRequest;
+import com.kenji.web_order.dto.request.token.RefreshTokenRequest;
+import com.kenji.web_order.dto.request.token.TokenRequest;
 import com.kenji.web_order.dto.response.AuthenticationResponse;
 import com.kenji.web_order.dto.response.IntrospectResponse;
 import com.nimbusds.jose.JOSEException;

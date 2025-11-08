@@ -1,5 +1,8 @@
 package com.kenji.web_order.dto.request;
 
+import com.kenji.web_order.entity.Order;
+import com.kenji.web_order.entity.Product;
+import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -12,13 +15,10 @@ import java.util.Map;
 @Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class OrderDetailRequest {
-    String name;
-    String productCode;
-    String img;
-    Map<String, BigDecimal> prices;
-
-    String categoryId;
-
-    boolean inStock;
-    boolean popular;
+    float price;
+    int numProducts;
+    float totalMoney;
+    String size;
+    Long orderId;
+    Long productId;
 }

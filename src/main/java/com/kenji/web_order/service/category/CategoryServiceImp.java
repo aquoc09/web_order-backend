@@ -1,4 +1,4 @@
-package com.kenji.web_order.service.Impl;
+package com.kenji.web_order.service.category;
 
 import com.kenji.web_order.dto.request.CategoryRequest;
 import com.kenji.web_order.dto.response.CategoryResponse;
@@ -7,7 +7,6 @@ import com.kenji.web_order.exception.AppException;
 import com.kenji.web_order.exception.ErrorCode;
 import com.kenji.web_order.mapper.CategoryMapper;
 import com.kenji.web_order.repository.CategoryRepository;
-import com.kenji.web_order.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

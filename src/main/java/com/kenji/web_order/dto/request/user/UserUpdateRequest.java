@@ -1,12 +1,10 @@
-package com.kenji.web_order.dto.request;
+package com.kenji.web_order.dto.request.user;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.kenji.web_order.entity.Role;
 import com.kenji.web_order.enums.Gender;
 import com.kenji.web_order.validator.DobConstraint;
 import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.*;
 import lombok.experimental.FieldDefaults;

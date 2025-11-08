@@ -1,10 +1,10 @@
 package com.kenji.web_order.controller;
 
-import com.kenji.web_order.dto.request.UserCreationRequest;
-import com.kenji.web_order.dto.request.UserUpdateRequest;
+import com.kenji.web_order.dto.request.user.UserCreationRequest;
+import com.kenji.web_order.dto.request.user.UserUpdateRequest;
 import com.kenji.web_order.dto.response.ApiResponse;
 import com.kenji.web_order.dto.response.UserResponse;
-import com.kenji.web_order.service.UserService;
+import com.kenji.web_order.service.user.UserService;
 import jakarta.validation.Valid;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;

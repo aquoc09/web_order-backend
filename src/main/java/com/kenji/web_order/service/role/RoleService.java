@@ -1,8 +1,6 @@
-package com.kenji.web_order.service;
+package com.kenji.web_order.service.role;
 
-import com.kenji.web_order.dto.request.CategoryRequest;
 import com.kenji.web_order.dto.request.RoleRequest;
-import com.kenji.web_order.dto.response.CategoryResponse;
 import com.kenji.web_order.dto.response.RoleResponse;
 
 import java.util.List;

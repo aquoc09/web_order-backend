@@ -1,7 +1,7 @@
 package com.kenji.web_order.mapper;
 
 import com.kenji.web_order.dto.request.ProductRequest;
-import com.kenji.web_order.dto.response.ProductResponse;
+import com.kenji.web_order.dto.response.product.ProductResponse;
 import com.kenji.web_order.entity.Category;
 import com.kenji.web_order.entity.Product;
 import org.mapstruct.Mapper;

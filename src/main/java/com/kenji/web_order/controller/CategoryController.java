@@ -3,7 +3,7 @@ package com.kenji.web_order.controller;
 import com.kenji.web_order.dto.request.CategoryRequest;
 import com.kenji.web_order.dto.response.ApiResponse;
 import com.kenji.web_order.dto.response.CategoryResponse;
-import com.kenji.web_order.service.Impl.CategoryServiceImp;
+import com.kenji.web_order.service.category.CategoryServiceImp;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;

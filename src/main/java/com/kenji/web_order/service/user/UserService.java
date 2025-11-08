@@ -1,9 +1,8 @@
-package com.kenji.web_order.service;
+package com.kenji.web_order.service.user;
 
-import com.kenji.web_order.dto.request.UserCreationRequest;
-import com.kenji.web_order.dto.request.UserUpdateRequest;
+import com.kenji.web_order.dto.request.user.UserCreationRequest;
+import com.kenji.web_order.dto.request.user.UserUpdateRequest;
 import com.kenji.web_order.dto.response.UserResponse;
-import com.kenji.web_order.entity.User;
 import com.kenji.web_order.exception.AppException;
 
 import java.util.List;

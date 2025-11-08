@@ -1,8 +1,8 @@
-package com.kenji.web_order.service.Impl;
+package com.kenji.web_order.service.authentication;
 
 import com.kenji.web_order.dto.request.AuthenticationRequest;
-import com.kenji.web_order.dto.request.RefreshTokenRequest;
-import com.kenji.web_order.dto.request.TokenRequest;
+import com.kenji.web_order.dto.request.token.RefreshTokenRequest;
+import com.kenji.web_order.dto.request.token.TokenRequest;
 import com.kenji.web_order.dto.response.AuthenticationResponse;
 import com.kenji.web_order.dto.response.IntrospectResponse;
 import com.kenji.web_order.entity.Token;
@@ -11,7 +11,6 @@ import com.kenji.web_order.exception.AppException;
 import com.kenji.web_order.exception.ErrorCode;
 import com.kenji.web_order.repository.TokenRepository;
 import com.kenji.web_order.repository.UserRepository;
-import com.kenji.web_order.service.AuthenticationService;
 import com.nimbusds.jose.*;
 import com.nimbusds.jose.crypto.MACSigner;
 import com.nimbusds.jose.crypto.MACVerifier;
@@ -25,12 +24,9 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.util.CollectionUtils;
 
 import java.text.ParseException;
 import java.time.Instant;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.Date;
 import java.util.List;

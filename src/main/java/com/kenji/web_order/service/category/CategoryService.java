@@ -1,4 +1,4 @@
-package com.kenji.web_order.service;
+package com.kenji.web_order.service.category;
 
 import com.kenji.web_order.dto.request.CategoryRequest;
 import com.kenji.web_order.dto.response.CategoryResponse;
