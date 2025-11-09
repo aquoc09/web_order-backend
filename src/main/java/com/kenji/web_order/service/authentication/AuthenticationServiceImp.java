@@ -1,8 +1,9 @@
 package com.kenji.web_order.service.authentication;
 
 import com.kenji.web_order.dto.request.AuthenticationRequest;
-import com.kenji.web_order.dto.request.token.RefreshTokenRequest;
-import com.kenji.web_order.dto.request.token.TokenRequest;
+import com.kenji.web_order.dto.request.auth.RefreshTokenRequest;
+import com.kenji.web_order.dto.request.auth.TokenRequest;
+import com.kenji.web_order.dto.request.auth.ForgotPasswordRequest;
 import com.kenji.web_order.dto.response.AuthenticationResponse;
 import com.kenji.web_order.dto.response.IntrospectResponse;
 import com.kenji.web_order.entity.Token;
@@ -11,6 +12,7 @@ import com.kenji.web_order.exception.AppException;
 import com.kenji.web_order.exception.ErrorCode;
 import com.kenji.web_order.repository.TokenRepository;
 import com.kenji.web_order.repository.UserRepository;
+import com.kenji.web_order.service.mail.MailService;
 import com.nimbusds.jose.*;
 import com.nimbusds.jose.crypto.MACSigner;
 import com.nimbusds.jose.crypto.MACVerifier;
@@ -28,10 +30,7 @@ import org.springframework.stereotype.Service;
 import java.text.ParseException;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
-import java.util.Date;
-import java.util.List;
-import java.util.StringJoiner;
-import java.util.UUID;
+import java.util.*;
 
 @Service
 @RequiredArgsConstructor
@@ -54,6 +53,9 @@ public class AuthenticationServiceImp implements AuthenticationService {
     @NonFinal
     @Value("${jwt.refreshable-duration}")
     protected long REFRESHABLE_DURATION;
+
+    @Autowired
+    MailService mailService;
 
     private static final int MAX_TOKENS = 3;
 
@@ -180,6 +182,23 @@ public class AuthenticationServiceImp implements AuthenticationService {
         } catch (AppException e) {
             log.info("Token already expired");
         }
+    }
+
+    @Override
+    public boolean forgotPassword(ForgotPasswordRequest request) {
+        User user = userRepository.findByEmail(request.getEmail())
+                .orElseThrow(() -> new AppException(ErrorCode.USER_NOT_EXISTED));
+        if (!request.getEmail().isEmpty() && !request.getFullName().isEmpty() && !request.getUsername().isEmpty()) {
+            if (Objects.equals(user.getFullName(), request.getFullName())
+                    && request.getUsername().equals(user.getUsername())) {
+                String newPassword = mailService.forgotPassword(user);
+                PasswordEncoder passwordEncoder = new BCryptPasswordEncoder(10);
+                user.setPassword(passwordEncoder.encode(newPassword));
+                userRepository.save(user);
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override

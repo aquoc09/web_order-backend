@@ -4,6 +4,7 @@ import com.kenji.web_order.dto.request.ProductRequest;
 import com.kenji.web_order.dto.response.product.ProductResponse;
 import com.kenji.web_order.entity.Category;
 import com.kenji.web_order.entity.Product;
+import com.kenji.web_order.entity.User;
 import com.kenji.web_order.exception.AppException;
 import com.kenji.web_order.exception.ErrorCode;
 import com.kenji.web_order.mapper.ProductMapper;
@@ -53,6 +54,14 @@ public class ProductServiceImp implements ProductService {
         productsPage = productRepository.searchProducts(categoryId, keyword, pageRequest);
         return productsPage
                 .map(product -> productMapper.toProductResponse(product));
+    }
+
+    public List<ProductResponse> findByCategoryCode(PageRequest pageRequest, String categoryCode) {
+        List<Product> products = productRepository.findByCategoryCode(pageRequest, categoryCode);
+        return products
+                .stream()
+                .map(product -> productMapper.toProductResponse(product))
+                .toList();
     }
 
     public List<ProductResponse> findLatestProducts(int limit) {

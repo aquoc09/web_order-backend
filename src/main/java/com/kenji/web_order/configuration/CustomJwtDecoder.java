@@ -1,6 +1,6 @@
 package com.kenji.web_order.configuration;
 
-import com.kenji.web_order.dto.request.token.TokenRequest;
+import com.kenji.web_order.dto.request.auth.TokenRequest;
 import com.kenji.web_order.service.authentication.AuthenticationService;
 import com.nimbusds.jose.JOSEException;
 import lombok.AccessLevel;

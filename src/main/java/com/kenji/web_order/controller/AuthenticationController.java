@@ -2,8 +2,9 @@ package com.kenji.web_order.controller;
 
 
 import com.kenji.web_order.dto.request.AuthenticationRequest;
-import com.kenji.web_order.dto.request.token.RefreshTokenRequest;
-import com.kenji.web_order.dto.request.token.TokenRequest;
+import com.kenji.web_order.dto.request.auth.ForgotPasswordRequest;
+import com.kenji.web_order.dto.request.auth.RefreshTokenRequest;
+import com.kenji.web_order.dto.request.auth.TokenRequest;
 import com.kenji.web_order.dto.response.ApiResponse;
 import com.kenji.web_order.dto.response.AuthenticationResponse;
 import com.kenji.web_order.dto.response.IntrospectResponse;
@@ -54,5 +55,14 @@ public class AuthenticationController {
         var result = authenticationService.refreshToken(request);
 
         return ApiResponse.<AuthenticationResponse>builder().result(result).build();
+    }
+
+    @PostMapping("/forgot-passwd")
+    ApiResponse<Boolean> forgotPassword(@RequestBody ForgotPasswordRequest request){
+        boolean result = authenticationService.forgotPassword(request);
+
+        return ApiResponse.<Boolean>builder()
+                .result(result)
+                .build();
     }
 }

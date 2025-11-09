@@ -18,7 +18,10 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 
     Page<Product> findAll(Pageable pageable);//phân trang
 
-    List<Product> findByCategory(Category category);
+
+    @Query("SELECT p FROM Product p WHERE " +
+            "(:categoryCode IS NULL OR p.category.categoryCode = :categoryCode)")
+    List<Product> findByCategoryCode(Pageable pageable, String categoryCode);
 
     @Query("SELECT p FROM Product p WHERE " +
             "(:categoryId IS NULL OR :categoryId = 0 OR p.category.id = :categoryId) " +

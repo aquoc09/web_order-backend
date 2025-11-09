@@ -55,6 +55,18 @@ public class ProductController {
                 .build();
     }
 
+    @GetMapping("/category-code/{categoryCode}")
+    ApiResponse<List<ProductResponse>> getProductByCategoryCode(
+            @RequestParam(defaultValue = "5") int limit,
+            @PathVariable String categoryCode
+    ){
+        PageRequest pageRequest = PageRequest.of(0,limit);
+        List<ProductResponse> productResponses = productService.findByCategoryCode(pageRequest, categoryCode);
+        return ApiResponse.<List<ProductResponse>>builder()
+                .result(productResponses)
+                .build();
+    }
+
     @GetMapping("/latest-products")
     ApiResponse<List<ProductResponse>> getLatestProducts(@RequestParam(defaultValue = "5") int limit){
         List<ProductResponse> productResponses = productService.findLatestProducts(limit);

@@ -1,4 +1,4 @@
-package com.kenji.web_order.dto.request.token;
+package com.kenji.web_order.dto.request.auth;
 
 import lombok.*;
 import lombok.experimental.FieldDefaults;

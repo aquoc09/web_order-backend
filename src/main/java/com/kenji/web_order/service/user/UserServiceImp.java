@@ -44,15 +44,16 @@ public class UserServiceImp implements UserService {
     TokenRepository tokenRepository;
 
 
+
     @Override
     public UserResponse createUser(UserCreationRequest request) throws AppException {
         User user = userMapper.toUser(request);
         user.setPassword(passwordEncoder.encode(user.getPassword()));
 
-        if(user.getRole() == null) {
+        if (user.getRole() == null) {
             log.info("Role has been not set yet!");
             Role role = roleRepository.findById(RoleEnum.USER.toString())
-                            .orElseThrow(() -> new AppException(ErrorCode.ROLE_NOT_EXISTED));
+                    .orElseThrow(() -> new AppException(ErrorCode.ROLE_NOT_EXISTED));
             user.setRole(role);
         }
         user.setActive(true);
@@ -127,5 +128,10 @@ public class UserServiceImp implements UserService {
 
     @Override
     public void blockOrEnable(Long userId, Boolean active) throws AppException {
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new AppException(ErrorCode.USER_NOT_EXISTED));
+
+        user.setActive(active);
+        userRepository.save(user);
     }
 }

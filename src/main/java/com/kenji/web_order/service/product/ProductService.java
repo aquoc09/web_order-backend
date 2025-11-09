@@ -8,18 +8,21 @@ import org.springframework.data.domain.PageRequest;
 import java.util.List;
 
 public interface ProductService {
-     ProductResponse createProduct(ProductRequest request);
+    ProductResponse createProduct(ProductRequest request);
 
     ProductResponse getProduct(Long productId);
 
     Page<ProductResponse> findAllProducts(String keyword,
                                           Long categoryId,
                                           PageRequest pageRequest);
+
+    List<ProductResponse> findByCategoryCode(PageRequest pageRequest, String categoryCode);
+
     List<ProductResponse> findLatestProducts(int limit);
 
     List<ProductResponse> getPopularProducts(int limit);
 
     void deleteProduct(Long productId);
 
-     ProductResponse updateProduct(Long productId, ProductRequest request);
+    ProductResponse updateProduct(Long productId, ProductRequest request);
 }

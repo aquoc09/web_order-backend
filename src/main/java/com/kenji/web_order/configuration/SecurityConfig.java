@@ -24,12 +24,12 @@ public class SecurityConfig {
 
     private static final String[] PUBLIC_POST_ENDPOINTS = {
         "/users",
-            "auth/log-in", "/auth/introspect", "/auth/logout", "/auth/refresh"
+            "auth/log-in", "/auth/introspect", "/auth/logout", "/auth/refresh", "/auth/forgot-passwd"
     };
     private static final String[] PUBLIC_GET_ENDPOINTS = {
-            "/products/latest-products", "/products/popular-products", "/products",
+            "/products/latest-products", "/products/popular-products", "products/category-code", "/products",
             "/promotions/in-stock",
-            "/category"
+            "/categories"
     };
 
 
