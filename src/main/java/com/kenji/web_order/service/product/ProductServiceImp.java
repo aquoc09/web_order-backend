@@ -47,7 +47,6 @@ public class ProductServiceImp implements ProductService {
         return productMapper.toProductResponse(product);
     }
 
-    @PreAuthorize("hasAnyRole('ADMIN','MANAGER')")
     public Page<ProductResponse> findAllProducts(String keyword, Long categoryId, PageRequest pageRequest) {
         // Lấy danh sách sản phẩm theo trang (page), giới hạn (limit), và categoryId (nếu có)
         Page<Product> productsPage;

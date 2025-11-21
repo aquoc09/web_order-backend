@@ -188,8 +188,8 @@ public class AuthenticationServiceImp implements AuthenticationService {
     public boolean forgotPassword(ForgotPasswordRequest request) {
         User user = userRepository.findByEmail(request.getEmail())
                 .orElseThrow(() -> new AppException(ErrorCode.USER_NOT_EXISTED));
-        if (!request.getEmail().isEmpty() && !request.getFullName().isEmpty() && !request.getUsername().isEmpty()) {
-            if (Objects.equals(user.getFullName(), request.getFullName())
+        if (!request.getEmail().isEmpty() && !request.getUsername().isEmpty()) {
+            if (Objects.equals(user.getEmail(), request.getEmail())
                     && request.getUsername().equals(user.getUsername())) {
                 String newPassword = mailService.forgotPassword(user);
                 PasswordEncoder passwordEncoder = new BCryptPasswordEncoder(10);

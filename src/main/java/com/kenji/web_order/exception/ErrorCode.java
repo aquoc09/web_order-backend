@@ -29,13 +29,17 @@ public enum ErrorCode {
     ROLES_EMPTY(3003, "Role request is empty", HttpStatus.BAD_REQUEST),
 
     PRODUCT_NOT_EXISTED(4001, "Product not existed", HttpStatus.NOT_FOUND),
+    SIZE_NOT_VALID(4001, "This product has no that size", HttpStatus.NOT_FOUND),
 
     CATEGORY_NOT_EXISTED(5001, "Category not existed", HttpStatus.NOT_FOUND),
 
     TOKEN_EXPIRED(6001, "Token is expired", HttpStatus.BAD_REQUEST),
     NO_USER_TOKEN(6002, "No user match to token", HttpStatus.BAD_REQUEST),
 
-    PROMOTION_NOT_EXISTED(7002, "No user match to token", HttpStatus.NOT_FOUND)
+    PROMOTION_NOT_EXISTED(7002, "Promotion is not existed", HttpStatus.NOT_FOUND),
+
+    CART_ITEM_NOT_FOUND(8001, "Cart item is not existed", HttpStatus.NOT_FOUND)
+
     ;
 
     ErrorCode(int code, String message, HttpStatus status) {

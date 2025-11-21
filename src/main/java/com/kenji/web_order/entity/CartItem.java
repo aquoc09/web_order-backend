@@ -3,6 +3,8 @@ package com.kenji.web_order.entity;
 import com.kenji.web_order.enums.ProductSize;
 import jakarta.persistence.*;
 import lombok.*;
+import lombok.experimental.FieldDefaults;
+
 import java.math.BigDecimal;
 
 @Entity
@@ -12,28 +14,29 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class CartItem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    Long id;
 
     @Column(name = "quantity")
-    private int quantity;
+    int quantity;
 
     @Column(name = "total_money")
-    private BigDecimal totalMoney;
+    BigDecimal totalMoney;
 
     @Column(name = "product_size")
-    private ProductSize size;
+    ProductSize size;
 
     @Column(name = "note", length = 200)
-    private String note;
+    String note;
 
     @ManyToOne
     @JoinColumn(name = "cart_id")
-    private Cart cart;
+    Cart cart;
 
     @ManyToOne
     @JoinColumn(name = "product_id")
-    private Product product;
+    Product product;
 }

@@ -16,7 +16,7 @@ public class CategoryResponse {
     Long id;
     String name;
     String categoryCode;
-    CategoryStatus status;
+    boolean active;
     String parentCategory;
     List<String> subCategories;
 }

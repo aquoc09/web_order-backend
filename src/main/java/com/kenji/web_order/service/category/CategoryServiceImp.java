@@ -3,11 +3,14 @@ package com.kenji.web_order.service.category;
 import com.kenji.web_order.dto.request.CategoryRequest;
 import com.kenji.web_order.dto.response.CategoryResponse;
 import com.kenji.web_order.entity.Category;
+import com.kenji.web_order.entity.Product;
 import com.kenji.web_order.exception.AppException;
 import com.kenji.web_order.exception.ErrorCode;
 import com.kenji.web_order.mapper.CategoryMapper;
 import com.kenji.web_order.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -42,12 +45,12 @@ public class CategoryServiceImp implements CategoryService {
     }
 
     //@PreAuthorize("hasAnyRole('ADMIN','HR')")
-    public List<CategoryResponse> findAllCategories() {
-        List<CategoryResponse> categoryResponses = new ArrayList<>();
-        categoryRepository.findAll().forEach(category ->
-                categoryResponses.add(categoryMapper.toCategoryResponse(category))
-        );
-        return categoryResponses;
+    public List<CategoryResponse> findAllCategories(String keyword,
+                                                    Long parentCategoryId) {
+        List<Category> categories = categoryRepository.searchCategories(parentCategoryId, keyword);
+        return categories.stream()
+                .map(category -> categoryMapper.toCategoryResponse(category))
+                .toList();
     }
 
     public void deleteCategory(Long categoryId) {
@@ -68,6 +71,22 @@ public class CategoryServiceImp implements CategoryService {
         }
 
         return categoryMapper.toCategoryResponse(categoryRepository.save(category));
+    }
+
+    @Override
+    public boolean setActiveCategory(Long categoryId, CategoryRequest categoryRequest) {
+        boolean isActive = categoryRequest.isActive();
+        System.out.println("active: "+ isActive);
+        Category category = categoryRepository.findById(categoryId)
+                .orElseThrow(() -> new AppException(ErrorCode.CATEGORY_NOT_EXISTED));
+        List<Category> categories = category.getSubCategories();
+        category.setActive(isActive);
+        for(var cat: categories){
+            cat.setActive(isActive);
+            categoryRepository.save(cat);
+        }
+        categoryRepository.save(category);
+        return category.isActive();
     }
 
 }

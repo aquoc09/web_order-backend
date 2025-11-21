@@ -1,5 +1,6 @@
-package com.kenji.web_order.dto.request;
+package com.kenji.web_order.dto.response;
 
+import com.kenji.web_order.dto.response.product.ProductResponse;
 import com.kenji.web_order.entity.Cart;
 import com.kenji.web_order.entity.Product;
 import com.kenji.web_order.enums.ProductSize;
@@ -10,17 +11,18 @@ import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import java.math.BigDecimal;
-import java.util.Map;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class CartItemRequest {
-    long id;
+public class CartItemResponse {
+    Long id;
     int quantity;
+    BigDecimal totalMoney;
     ProductSize size;
     String note;
+    Long cartId;
     Long productId;
 }

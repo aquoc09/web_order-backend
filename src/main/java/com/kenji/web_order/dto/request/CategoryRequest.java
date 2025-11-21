@@ -20,6 +20,6 @@ import java.util.List;
 public class CategoryRequest {
     String name;
     String categoryCode;
-    CategoryStatus status;
+    boolean active;
     Category parentCategory;
 }

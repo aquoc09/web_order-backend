@@ -26,8 +26,8 @@ public class Category {
     @Column(name = "category_code")
     String categoryCode;
 
-    @Column(name = "category_status")
-    CategoryStatus status;
+    @Column(name = "is_active")
+    boolean active;
 
     @ManyToOne
     @JoinColumn(name = "parent_id")

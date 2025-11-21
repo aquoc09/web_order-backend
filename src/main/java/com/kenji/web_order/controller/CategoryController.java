@@ -29,9 +29,11 @@ public class CategoryController {
     }
 
     @GetMapping
-    List<ApiResponse<CategoryResponse>> getAll() {
+    List<ApiResponse<CategoryResponse>> getAll(
+            @RequestParam(defaultValue = "") String keyword,
+            @RequestParam(defaultValue = "0", name = "parent_category_id") Long parentCategoryId) {
         List<ApiResponse<CategoryResponse>> apiResponses = new ArrayList<>();
-        categoryService.findAllCategories().forEach(categoryResponse -> apiResponses.add(
+        categoryService.findAllCategories(keyword, parentCategoryId).forEach(categoryResponse -> apiResponses.add(
                 ApiResponse.<CategoryResponse>builder()
                         .result(categoryResponse)
                         .build()));
@@ -58,6 +60,14 @@ public class CategoryController {
                                          @RequestBody CategoryRequest request) {
         return ApiResponse.<CategoryResponse>builder()
                 .result(categoryService.updateCategory(categoryId, request))
+                .build();
+    }
+
+    @PutMapping("/set-active/{categoryId}")
+    ApiResponse<Boolean> setActiveCategory(@PathVariable Long categoryId,
+                                           @RequestBody CategoryRequest request){
+        return ApiResponse.<Boolean>builder()
+                .result(categoryService.setActiveCategory(categoryId,request))
                 .build();
     }
 
